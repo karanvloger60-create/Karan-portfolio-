@@ -1,0 +1,38 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidProject(data) {
+      return data.id is string
+        && data.title is string && data.title.size() <= 200
+        && data.image is string
+        && (!('category' in data) || data.category is string)
+        && (!('timeline' in data) || data.timeline is string)
+        && (!('shortDescription' in data) || data.shortDescription is string)
+        && (!('screenshots' in data) || data.screenshots is list)
+        && (!('features' in data) || data.features is list)
+        && (!('technologies' in data) || data.technologies is list);
+    }
+
+    // Projects: Publicly viewable by prospective clients, editable via portfolio admin
+    match /projects/{projectId} {
+      allow read: if true;
+      allow create, update: if isValidId(projectId) && isValidProject(request.resource.data);
+      allow delete: if isValidId(projectId);
+    }
+
+    // Config: Publicly viewable, editable via portfolio admin
+    match /config/{configId} {
+      allow read: if true;
+      allow write: if isValidId(configId) && request.resource.data.avatarUrl is string;
+    }
+  }
+}

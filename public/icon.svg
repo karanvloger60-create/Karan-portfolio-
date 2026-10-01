@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="50%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#4f46e5" />
+    </linearGradient>
+    <linearGradient id="kGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#e0f2fe" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Background rounded squircle with safe margin -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" />
+
+  <!-- Subtle glow inner ring -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="4" />
+
+  <!-- Code Bracket & Stylized 'K' Symbol in center (Safe Zone within 80% circle) -->
+  <g filter="url(#shadow)" fill="url(#kGrad)">
+    <!-- Left bracket < -->
+    <path d="M 148 190 L 100 256 L 148 322 L 132 334 L 74 256 L 132 178 Z" opacity="0.85" />
+
+    <!-- Right bracket > -->
+    <path d="M 364 190 L 412 256 L 364 322 L 380 334 L 438 256 L 380 178 Z" opacity="0.85" />
+
+    <!-- Center 'K' Monogram -->
+    <!-- Vertical stem -->
+    <rect x="190" y="160" width="30" height="192" rx="12" />
+
+    <!-- Upper branch -->
+    <path d="M 215 264 L 305 168 A 12 12 0 0 1 323 182 L 245 266 Z" />
+
+    <!-- Lower branch -->
+    <path d="M 238 250 L 320 338 A 12 12 0 0 1 302 352 L 210 256 Z" />
+
+    <!-- Accent Dot / Sparkle -->
+    <circle cx="320" cy="256" r="10" fill="#38bdf8" />
+  </g>
+</svg>

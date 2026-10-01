@@ -1,0 +1,103 @@
+{
+  "entities": {
+    "Project": {
+      "title": "Project",
+      "description": "Portfolio client project item",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the project"
+        },
+        "number": {
+          "type": "string",
+          "description": "Display order number (e.g. 01, 02)"
+        },
+        "title": {
+          "type": "string",
+          "description": "Project title or client business name",
+          "maxLength": 150
+        },
+        "category": {
+          "type": "string",
+          "description": "Industry or business category",
+          "maxLength": 100
+        },
+        "timeline": {
+          "type": "string",
+          "description": "Project turnaround delivery timeline",
+          "maxLength": 50
+        },
+        "shortDescription": {
+          "type": "string",
+          "description": "Short summary displayed on the card",
+          "maxLength": 500
+        },
+        "fullDescription": {
+          "type": "string",
+          "description": "Full project case study description",
+          "maxLength": 2000
+        },
+        "image": {
+          "type": "string",
+          "description": "Main cover screenshot URL or base64"
+        },
+        "screenshots": {
+          "type": "array",
+          "description": "List of screenshot image URLs or base64 data"
+        },
+        "liveUrl": {
+          "type": "string",
+          "description": "Live production website URL"
+        },
+        "features": {
+          "type": "array",
+          "description": "Key delivered features"
+        },
+        "technologies": {
+          "type": "array",
+          "description": "Tech stack tags"
+        },
+        "deliverables": {
+          "type": "array",
+          "description": "Deliverables list"
+        },
+        "client": {
+          "type": "string",
+          "description": "Client name"
+        },
+        "highlightColor": {
+          "type": "string",
+          "description": "CSS gradient highlight"
+        },
+        "demoType": {
+          "type": "string",
+          "description": "Demo visual type"
+        }
+      },
+      "required": ["id", "title", "image"]
+    },
+    "Config": {
+      "title": "Config",
+      "description": "Portfolio site configuration including avatar",
+      "type": "object",
+      "properties": {
+        "avatarUrl": {
+          "type": "string",
+          "description": "Current developer avatar URL"
+        }
+      },
+      "required": ["avatarUrl"]
+    }
+  },
+  "firestore": {
+    "/projects/{projectId}": {
+      "schema": "Project",
+      "description": "Public portfolio projects collection"
+    },
+    "/config/{configId}": {
+      "schema": "Config",
+      "description": "Global portfolio settings"
+    }
+  }
+}
